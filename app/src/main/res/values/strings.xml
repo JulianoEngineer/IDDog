@@ -2,4 +2,6 @@
     <string name="app_name">IDdog</string>
     <string name="title_activity_sign_up">Sign Up</string>
     <string name="email_label">E-mail</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
 </resources>
