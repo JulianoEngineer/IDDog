@@ -1,10 +1,10 @@
 package juliano.oliveira.iddog;
 
-public class ApiUtils {
+public class ApiServiceUtils {
 
-    private ApiUtils() {}
+    private ApiServiceUtils() {}
 
-    public static final String BASE_URL = "http://jsonplaceholder.typicode.com/";
+    public static final String BASE_URL = "https://iddog-api.now.sh";
 
     public static IDDogService getAPIService() {
 

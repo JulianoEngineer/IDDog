@@ -1,5 +1,6 @@
 package juliano.oliveira.iddog;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,7 +12,7 @@ public class GET {
     private String category;
     @SerializedName("list")
     @Expose
-    private List<String> list = null;
+    private ArrayList<String> list = null;
 
     public String getCategory() {
         return category;
@@ -26,15 +27,15 @@ public class GET {
         return this;
     }
 
-    public List<String> getList() {
+    public ArrayList<String> getList() {
         return list;
     }
 
-    public void setList(List<String> list) {
+    public void setList(ArrayList<String> list) {
         this.list = list;
     }
 
-    public GET withList(List<String> list) {
+    public GET withList(ArrayList<String> list) {
         this.list = list;
         return this;
     }

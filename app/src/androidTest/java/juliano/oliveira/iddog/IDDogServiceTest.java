@@ -5,7 +5,6 @@ import android.util.Log;
 
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,7 +29,7 @@ public class IDDogServiceTest {
         _retrofit = RetrofitClient.getClient("https://iddog-api.now.sh");
 
        // _idDogService = _retrofit.create(IDDogService.class);
-        mAPIService = ApiUtils.getAPIService();
+        mAPIService = ApiServiceUtils.getAPIService();
     }
 
     @Test
