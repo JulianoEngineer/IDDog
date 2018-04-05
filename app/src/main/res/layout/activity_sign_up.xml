@@ -6,8 +6,8 @@
     android:background="@color/main_color">
 
     <ImageView  android:src="@mipmap/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
         android:layout_marginBottom="24dp"
         android:layout_gravity="center_horizontal" />
 
@@ -19,7 +19,7 @@
         android:textColor="@color/white">
 
         <EditText
-            android:id="@+id/txtEmail"
+            android:id="@+id/txt_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
