@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,9 +66,9 @@ public class FragmentHusky extends Fragment {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                HashMap<String, Object> hm = grid.getAdapter().getPosition(positon);
-                Intent intent = new Intent(getContext(),ImageDetail.class);
-                intent.putExtra("IMAGEPATH",products.get(position).imagePath);
+                String path = grid.getAdapter().getItem(position).toString();
+                Intent intent = new Intent(getContext(), ImageDetail.class);
+                intent.putExtra("IMAGEPATH",path);
                 startActivity(intent);
             }
         });
