@@ -20,13 +20,7 @@ public class GridViewAdapter extends BaseAdapter {
 
     public GridViewAdapter(Context context) {
         this.context = context;
-
-        // Ensure we get a different ordering of images on each run.
-//        Collections.addAll(urls, ContactsContract.Contacts.Data.URLS);
-//        Collections.shuffle(urls);
-
-        // Triple up the list.
-    }
+   }
 
     @Override public View getView(int position, View convertView, ViewGroup parent) {
         SquaredImageView view = (SquaredImageView) convertView;
@@ -63,9 +57,7 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     public void setUrls(List<String> urlsSource) {
-        if(urls.size()>0)
-            urlsSource.clear();
-
-        this.urls.addAll(urlsSource);
+        if(urls.size()==0)
+            this.urls.addAll(urlsSource);
     }
 }

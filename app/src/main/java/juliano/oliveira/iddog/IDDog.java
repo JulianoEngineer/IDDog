@@ -44,8 +44,6 @@ public class IDDog extends AppCompatActivity {
         _progressDialog.setIndeterminate(true);
         _progressDialog.setMessage("Authenticating...");
 
-
-
         _signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

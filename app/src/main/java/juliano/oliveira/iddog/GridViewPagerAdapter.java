@@ -53,11 +53,11 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
                     hound.setArguments(bundle);
                     return hound;
                 case 2:
-                    Fragment pug = new FragmentHusky();
+                    Fragment pug = new FragmentPug();
                     pug.setArguments(bundle);
                     return pug;
                 case 3:
-                    Fragment labrador = new FragmentHusky();
+                    Fragment labrador = new FragmentLabrador();
                     labrador.setArguments(bundle);
                     return labrador;
                   default:
