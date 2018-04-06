@@ -39,34 +39,32 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
     // This determines the fragment for each tab
     @Override
     public Fragment getItem(int position) {
-        try {
-            Response<GET> response;
+
+        Bundle bundle = new Bundle();
+        bundle.putString("token",_token);
 
             switch (position){
                 case 0:
-                    synchronized (flag)
-                    {
-                        GetDog(_apiService,"husky",_token , 0);
-                        _progressDialog.show();
-                        flag.wait();
-                        _progressDialog.dismiss();
-                    }
-                    return globalFragment;
+                    Fragment husky = new FragmentHusky();
+                    husky.setArguments(bundle);
+                    return husky;
                 case 1:
-                    return new FragmentHound();
+                    Fragment hound = new FragmentHound();
+                    hound.setArguments(bundle);
+                    return hound;
                 case 2:
-                    return new FragmentPug();
+                    Fragment pug = new FragmentHusky();
+                    pug.setArguments(bundle);
+                    return pug;
                 case 3:
-                    return new FragmentLabrador();
-
-                 default:
-                    return new FragmentHusky();
+                    Fragment labrador = new FragmentHusky();
+                    labrador.setArguments(bundle);
+                    return labrador;
+                  default:
+                     Fragment defaulFrag = new FragmentHusky();
+                     defaulFrag.setArguments(bundle);
+                     return defaulFrag;
             }
-            }catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        return null;
     }
 
     // This determines the number of tabs
@@ -101,37 +99,6 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
     public void setApiService(IDDogService apiService)
     {
         this._apiService = apiService;
-    }
-
-    public void GetDog(IDDogService api, String category,  String token, final int position) {
-
-        api.getCategory(category, token).enqueue(new Callback<GET>() {
-            @Override
-            public void onResponse(Call<GET> call, Response<GET> response) {
-                if (response.isSuccessful()) {
-
-                    switch (position) {
-                        case 0:
-                            Fragment husky = new FragmentHusky();
-                            Bundle args = new Bundle();
-                            args.putStringArrayList("index", response.body().getList());
-                            globalFragment = husky;
-                            flag.notifyAll();
-                        case 1:
-
-                        case 2:
-
-                        case 3:
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GET> call, Throwable t) {
-
-            }
-        });
     }
 
 }
