@@ -26,15 +26,6 @@ public class GridViewAdapter extends BaseAdapter {
 //        Collections.shuffle(urls);
 
         // Triple up the list.
-        ArrayList<String> copy = new ArrayList<String>(urls);
-        urls.addAll(copy);
-        urls.addAll(copy);
-        urls.add("http://www.betaetiquetas.com.br/product_images/y/643/teste1__63139_zoom.png");
-        urls.add("http://www.betaetiquetas.com.br/product_images/y/643/teste1__63139_zoom.png");
-        urls.add("http://www.betaetiquetas.com.br/product_images/y/643/teste1__63139_zoom.png");
-        urls.add("http://www.betaetiquetas.com.br/product_images/y/643/teste1__63139_zoom.png");
-        urls.add("http://www.betaetiquetas.com.br/product_images/y/643/teste1__63139_zoom.png");
-        urls.add("http://www.betaetiquetas.com.br/product_images/y/643/teste1__63139_zoom.png");
     }
 
     @Override public View getView(int position, View convertView, ViewGroup parent) {
@@ -69,5 +60,12 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override public long getItemId(int position) {
         return position;
+    }
+
+    public void setUrls(List<String> urlsSource) {
+        if(urls.size()>0)
+            urlsSource.clear();
+
+        this.urls.addAll(urlsSource);
     }
 }
