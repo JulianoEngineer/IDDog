@@ -12,7 +12,7 @@ public class GET {
     private String category;
     @SerializedName("list")
     @Expose
-    private ArrayList<String> list = null;
+    private List<String> list = null;
 
     public String getCategory() {
         return category;
@@ -27,15 +27,15 @@ public class GET {
         return this;
     }
 
-    public ArrayList<String> getList() {
+    public List<String> getList() {
         return list;
     }
 
-    public void setList(ArrayList<String> list) {
+    public void setList(List<String> list) {
         this.list = list;
     }
 
-    public GET withList(ArrayList<String> list) {
+    public GET withList(List<String> list) {
         this.list = list;
         return this;
     }
