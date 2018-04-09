@@ -6,31 +6,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
-import java.io.IOException;
-
-import juliano.oliveira.iddog.Fragments.FragmentHound;
-import juliano.oliveira.iddog.Fragments.FragmentHusky;
-import juliano.oliveira.iddog.Fragments.FragmentLabrador;
-import juliano.oliveira.iddog.Fragments.FragmentPug;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import juliano.oliveira.iddog.Fragments.GenericGridFragment;
 
 public class GridViewPagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
     private String _token;
     private IDDogService _apiService;
-    private Object flag;
-    private Fragment globalFragment;
+
     private ProgressDialog _progressDialog;
 
     public GridViewPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
-        flag = new Object();
         _progressDialog = new ProgressDialog(context);
         _progressDialog.setIndeterminate(true);
         _progressDialog.setMessage("Authenticating...");
@@ -45,23 +34,28 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
 
             switch (position){
                 case 0:
-                    Fragment husky = new FragmentHusky();
+                    Fragment husky = new GenericGridFragment();
+                    bundle.putString("category","husky");
                     husky.setArguments(bundle);
                     return husky;
                 case 1:
-                    Fragment hound = new FragmentHound();
+                    Fragment hound = new GenericGridFragment();
+                    bundle.putString("category","hound");
                     hound.setArguments(bundle);
                     return hound;
                 case 2:
-                    Fragment pug = new FragmentPug();
+                    Fragment pug = new GenericGridFragment();
+                    bundle.putString("category","pug");
                     pug.setArguments(bundle);
                     return pug;
                 case 3:
-                    Fragment labrador = new FragmentLabrador();
+                    Fragment labrador = new GenericGridFragment();
+                    bundle.putString("category","labrador");
                     labrador.setArguments(bundle);
                     return labrador;
                   default:
-                     Fragment defaulFrag = new FragmentHusky();
+                     Fragment defaulFrag = new GenericGridFragment();
+                      bundle.putString("category","husky");
                      defaulFrag.setArguments(bundle);
                      return defaulFrag;
             }

@@ -8,10 +8,9 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +23,7 @@ public class IDDog extends AppCompatActivity {
 
     private Button _signup;
     private EditText _email;
+    private CheckBox _connected;
     private Retrofit _retrofit;
     private IDDogService _apiService;
     private String _token;
@@ -36,13 +36,13 @@ public class IDDog extends AppCompatActivity {
 
         _signup = (Button) findViewById(R.id.btn_signup);
         _email = (EditText) findViewById(R.id.txt_Email);
+        _connected = (CheckBox) findViewById(R.id.chb_stay_connected);
 
-        _retrofit = RetrofitClient.getClient("https://iddog-api.now.sh");
         _apiService = ApiServiceUtils.getAPIService();
 
-        _progressDialog = new ProgressDialog(this);
+        _progressDialog = new ProgressDialog(this,R.style.ProgressTheme);
         _progressDialog.setIndeterminate(true);
-        _progressDialog.setMessage("Authenticating...");
+        _progressDialog.setMessage(getString(R.string.auth_wait_message));
 
         _signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,59 +53,34 @@ public class IDDog extends AppCompatActivity {
 
                 if(_email.getText().toString().isEmpty())
                 {
-                    _email.setError("Campo E-mail deve ser preenchido!");
+                    _email.setError(getString(R.string.email_empty_error));
 
                 }else if(!matcher.matches())
                 {
-                    _email.setError("E-mail inválido!");
+                    _email.setError(getString(R.string.email_invalid_error));
 
                 }else{
                     _progressDialog.show();
                     String email = _email.getText().toString();
-                    sendPost(email, _apiService);
+                    sendAuth(email, _apiService);
                 }
             }
         });
 
     }
 
-    private boolean authSync(String email)
-    {
-        Response<Post> response;
-
-        try {
-            response = _apiService.signup(email).execute();
-
-            if(response.code() == 200)
-            {
-                _token = response.body().getUser().getToken();
-                return true;
-
-            }else{
-
-                Toast.makeText(this, "Problems on Auth Method. Error code:"+response.code() ,Toast.LENGTH_LONG).show();
-                return false;
-
-            }
-        }catch (IOException e)
-        {
-            Toast.makeText(this, "Problems on Auth Method",Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-    }
-
-
-    public void sendPost(String email, IDDogService api) {
+    public void sendAuth(String email, IDDogService api) {
 
         api.signup(email).enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
 
                 if(response.isSuccessful()) {
-                    Log.i("SIGNUP", "post submitted to API. Token=" + response.body().getUser().getToken());
+                    Log.i("SIGNUP", getString(R.string.signin_sucess_message) + response.body().getUser().getToken());
                     _token = response.body().getUser().getToken();
                     if(_token.length()>0) {
+                        if (_connected.isChecked())
+
                         dogView(_token);
                     }
                   }
@@ -113,7 +88,7 @@ public class IDDog extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
-                Log.e("SIGNUP", "Unable to submit post to API.");
+                Log.e("SIGNUP", getString(R.string.signin_error_message));
             }
         });
     }

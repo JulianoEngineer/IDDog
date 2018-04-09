@@ -7,16 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 
 public class IDDogViewer extends AppCompatActivity {
 
-    private String _token;
-    private IDDogService _apiService;
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_id_dog_viewer);
 
-        _token = getIntent().getStringExtra("TOKEN");
-        _apiService = ApiServiceUtils.getAPIService();
+        String _token = getIntent().getStringExtra("TOKEN");
+        IDDogService _apiService = ApiServiceUtils.getAPIService();
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.vw_dogViewer);
 

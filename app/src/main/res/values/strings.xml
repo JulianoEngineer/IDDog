@@ -6,10 +6,13 @@
     <string name="login">Login</string>
     <string name="title_activity_viewer">ID Dog Viewer</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_husky">Husky</string>
     <string name="fragment_hound">Hound</string>
     <string name="fragment_pug">Pug</string>
     <string name="fragment_labrador">Labrador</string>
+    <string name="auth_wait_message">Autenticando …</string>
+    <string name="email_empty_error">Campo E-mail deve ser preenchido!</string>
+    <string name="email_invalid_error">E-mail inválido!</string>
+    <string name="signin_sucess_message">post submitted to API. Token=</string>
+    <string name="signin_error_message">Unable to submit post to API.</string>
 </resources>

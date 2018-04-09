@@ -41,4 +41,13 @@
         android:text="@string/login"
         android:onClick="submitEmail"/>
 
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:Text="Manter conectado."
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:id="@+id/chb_stay_connected"/>
+
 </LinearLayout>
