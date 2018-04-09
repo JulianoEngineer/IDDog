@@ -1,4 +1,4 @@
-# IDDog Mobile
+# :dog: IDDog Mobile
 
 Are you sad? Do you need something to make you smile again? I have the solution for your problems. **IDDog is the most happy app ever made**, some important university of the world said this, believe me. You need just 2 minutes of cute dogs in your smartphone and that is it, **Happy**. Enjoy with IDDog!
 
@@ -12,7 +12,7 @@ To perform login on IDDog you need just a valid e-mail and network connection.
 
 The installation is simple:
 
-- Put the **IDDog.apk** file in some place of your smartphone that you have access;
+- Put the **IDDog.apk** file (located under **Release** directory) in some place of your smartphone that you have access;
 - Go to **configuration -> security -> Unknown sources** and active this option;
 - Go to place that you stored the application and double-click file;
 - Follow the instructions of install;
