@@ -2,6 +2,7 @@
 
 Are you sad? Do you need something to make you smile again? I have the solution for your problems. **IDDog is the most happy app ever made**, some important university of the world said this, believe me. You need just 2 minutes of cute dogs in your smartphone and that is it, **Happy**. Enjoy with IDDog!
 
+
 ![Sample Usage](demo.gif)
 
 ## Getting Started
