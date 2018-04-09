@@ -3,6 +3,10 @@ package juliano.oliveira.iddog;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
+import juliano.oliveira.iddog.ApiAccess.ApiServiceUtils;
+import juliano.oliveira.iddog.ApiAccess.AuthPost;
+import juliano.oliveira.iddog.ApiAccess.FeedGet;
+import juliano.oliveira.iddog.ApiAccess.IDDogService;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -36,7 +40,7 @@ public class IDDogServiceTest {
     public void SIGNUP_TEST() throws Exception{
 
         //sendAuth("example");
-        Response<Post> response = mAPIService.signup("email@email.com").execute();
+        Response<AuthPost> response = mAPIService.signup("email@email.com").execute();
 
         Assert.assertEquals(200, response.code());
     }
@@ -44,20 +48,20 @@ public class IDDogServiceTest {
     @Test
     public void GET_FEED_TEST() throws Exception{
 
-        Response<Post> response = mAPIService.signup("email@email.com").execute();
+        Response<AuthPost> response = mAPIService.signup("email@email.com").execute();
 
         Assert.assertEquals(200, response.code());
 
-        Response<GET> responseg = mAPIService.getCategory("husky",response.body().getUser().getToken()).execute();
+        Response<FeedGet> responseg = mAPIService.getCategory("husky",response.body().getUser().getToken()).execute();
 
         Assert.assertEquals(200, responseg.code());
     }
 
     public void sendPost(String email) {
 
-        mAPIService.signup(email).enqueue(new Callback<Post>() {
+        mAPIService.signup(email).enqueue(new Callback<AuthPost>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(Call<AuthPost> call, Response<AuthPost> response) {
 
                 if(response.isSuccessful()) {
                     Log.i("SIGNUP", "post submitted to API. Token=" + response.body().getUser().getToken());
@@ -65,7 +69,7 @@ public class IDDogServiceTest {
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(Call<AuthPost> call, Throwable t) {
                 Log.e("SIGNUP", "Unable to submit post to API.");
             }
         });

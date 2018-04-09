@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import juliano.oliveira.iddog.ApiServiceUtils;
+import juliano.oliveira.iddog.ApiAccess.ApiServiceUtils;
 import juliano.oliveira.iddog.ImageDetail;
 import juliano.oliveira.iddog.R;
 

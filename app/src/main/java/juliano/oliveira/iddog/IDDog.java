@@ -2,6 +2,7 @@ package juliano.oliveira.iddog;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,9 @@ import android.widget.EditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import juliano.oliveira.iddog.ApiAccess.ApiServiceUtils;
+import juliano.oliveira.iddog.ApiAccess.AuthPost;
+import juliano.oliveira.iddog.ApiAccess.IDDogService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,11 +32,14 @@ public class IDDog extends AppCompatActivity {
     private IDDogService _apiService;
     private String _token;
     private ProgressDialog _progressDialog;
+    private SharedPreferences _sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        _sharedPreference = getSharedPreferences("LOGIN", MODE_PRIVATE);
+
 
         _signup = (Button) findViewById(R.id.btn_signup);
         _email = (EditText) findViewById(R.id.txt_Email);
@@ -43,6 +50,13 @@ public class IDDog extends AppCompatActivity {
         _progressDialog = new ProgressDialog(this,R.style.ProgressTheme);
         _progressDialog.setIndeterminate(true);
         _progressDialog.setMessage(getString(R.string.auth_wait_message));
+
+        _token = _sharedPreference. getString("token", null);
+
+        if(_token != null)
+        {
+            dogView(_token);
+        }
 
         _signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,27 +81,37 @@ public class IDDog extends AppCompatActivity {
             }
         });
 
+        _connected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!_connected.isChecked())
+                    _sharedPreference.edit().clear().commit();
+            }
+        });
+
     }
 
     public void sendAuth(String email, IDDogService api) {
 
-        api.signup(email).enqueue(new Callback<Post>() {
+        api.signup(email).enqueue(new Callback<AuthPost>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(Call<AuthPost> call, Response<AuthPost> response) {
 
                 if(response.isSuccessful()) {
                     Log.i("SIGNUP", getString(R.string.signin_sucess_message) + response.body().getUser().getToken());
                     _token = response.body().getUser().getToken();
                     if(_token.length()>0) {
-                        if (_connected.isChecked())
-
+                        if (_connected.isChecked()) {
+                            _sharedPreference.edit().putString("token", _token).apply();
+                        }
                         dogView(_token);
                     }
                   }
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(Call<AuthPost> call, Throwable t) {
                 Log.e("SIGNUP", getString(R.string.signin_error_message));
             }
         });
@@ -99,5 +123,15 @@ public class IDDog extends AppCompatActivity {
         intent.putExtra("TOKEN", token);
         _progressDialog.dismiss();
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        if(_sharedPreference. getString("token", null) != null) {
+            _sharedPreference.edit().clear().commit();
+            _connected.setChecked(false);
+        }
     }
 }

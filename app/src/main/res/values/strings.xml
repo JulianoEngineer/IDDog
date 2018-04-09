@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">IDdog</string>
-    <string name="title_activity_sign_up">Sign Up</string>
+    <string name="app_name">IDDog</string>
+    <string name="title_activity_sign_up">IDDog</string>
     <string name="email_label">E-mail</string>
     <string name="email">Email</string>
     <string name="login">Login</string>
@@ -15,4 +15,6 @@
     <string name="email_invalid_error">E-mail inválido!</string>
     <string name="signin_sucess_message">post submitted to API. Token=</string>
     <string name="signin_error_message">Unable to submit post to API.</string>
+    <string name="chb_manter_me_conectado">Manter me conectado.</string>
+    <string name="logoff_message">Pressione novamente para realizar logoff.</string>
 </resources>

@@ -12,15 +12,13 @@
         android:layout_height="wrap_content"
         app:tabMode="fixed"
         app:tabTextColor="@color/colorAccent"
-        app:tabSelectedTextColor="#f11eff"
+        app:tabSelectedTextColor="@color/selected"
         />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vw_dogViewer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-
-        />
+        android:background="@color/colorPrimary"/>
 
 </LinearLayout>

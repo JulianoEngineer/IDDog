@@ -44,8 +44,12 @@
     <CheckBox
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:Text="Manter conectado."
-        android:textSize="40dp"
+        android:textSize="20dp"
+        android:button="@drawable/chb_selector"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:paddingStart="10dp"
+        android:text="@string/chb_manter_me_conectado"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
         android:id="@+id/chb_stay_connected"/>
