@@ -26,7 +26,7 @@ public class IDDogServiceTest {
     @Before
     public void SETUP()
     {
-        _retrofit = RetrofitClient.getClient("https://iddog-api.now.sh");
+        _retrofit = ApiServiceUtils.getClient("https://iddog-api.now.sh");
 
        // _idDogService = _retrofit.create(IDDogService.class);
         mAPIService = ApiServiceUtils.getAPIService();
@@ -35,7 +35,7 @@ public class IDDogServiceTest {
     @Test
     public void SIGNUP_TEST() throws Exception{
 
-        //sendPost("example");
+        //sendAuth("example");
         Response<Post> response = mAPIService.signup("email@email.com").execute();
 
         Assert.assertEquals(200, response.code());
