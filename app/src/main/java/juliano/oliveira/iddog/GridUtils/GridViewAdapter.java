@@ -1,4 +1,4 @@
-package juliano.oliveira.iddog;
+package juliano.oliveira.iddog.GridUtils;
 
 import android.content.Context;
 import android.provider.ContactsContract;
@@ -11,6 +11,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import juliano.oliveira.iddog.R;
+import juliano.oliveira.iddog.SquaredImageView;
 
 import static android.widget.ImageView.ScaleType.CENTER_CROP;
 

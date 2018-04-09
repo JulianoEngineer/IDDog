@@ -1,4 +1,4 @@
-package juliano.oliveira.iddog;
+package juliano.oliveira.iddog.ApiAccess;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

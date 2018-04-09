@@ -1,11 +1,10 @@
-package juliano.oliveira.iddog;
+package juliano.oliveira.iddog.ApiAccess;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GET {
+public class FeedGet {
 
     @SerializedName("category")
     @Expose
@@ -22,7 +21,7 @@ public class GET {
         this.category = category;
     }
 
-    public GET withCategory(String category) {
+    public FeedGet withCategory(String category) {
         this.category = category;
         return this;
     }
@@ -35,7 +34,7 @@ public class GET {
         this.list = list;
     }
 
-    public GET withList(List<String> list) {
+    public FeedGet withList(List<String> list) {
         this.list = list;
         return this;
     }

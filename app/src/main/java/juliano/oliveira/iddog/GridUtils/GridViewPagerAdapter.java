@@ -1,4 +1,4 @@
-package juliano.oliveira.iddog;
+package juliano.oliveira.iddog.GridUtils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import juliano.oliveira.iddog.Fragments.GenericGridFragment;
+import juliano.oliveira.iddog.ApiAccess.IDDogService;
+import juliano.oliveira.iddog.R;
 
 public class GridViewPagerAdapter extends FragmentPagerAdapter {
 

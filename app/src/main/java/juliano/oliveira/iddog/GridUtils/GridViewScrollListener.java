@@ -1,4 +1,4 @@
-package juliano.oliveira.iddog;
+package juliano.oliveira.iddog.GridUtils;
 
 import android.content.Context;
 import android.widget.AbsListView;

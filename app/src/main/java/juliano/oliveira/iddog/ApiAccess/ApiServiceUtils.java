@@ -1,12 +1,10 @@
-package juliano.oliveira.iddog;
+package juliano.oliveira.iddog.ApiAccess;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
+import juliano.oliveira.iddog.GridUtils.GridViewAdapter;
+import juliano.oliveira.iddog.GridUtils.GridViewScrollListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,9 +34,9 @@ public class ApiServiceUtils {
 
     public static void GetDog( String category, String token, final Context ctx, final GridView grd) {
 
-        getAPIService().getCategory(category, token).enqueue(new Callback<GET>() {
+        getAPIService().getCategory(category, token).enqueue(new Callback<FeedGet>() {
             @Override
-            public void onResponse(Call<GET> call, Response<GET> response) {
+            public void onResponse(Call<FeedGet> call, Response<FeedGet> response) {
                 if (response.isSuccessful()) {
 
                     GridViewAdapter gridView = new GridViewAdapter(ctx);
@@ -49,7 +47,7 @@ public class ApiServiceUtils {
             }
 
             @Override
-            public void onFailure(Call<GET> call, Throwable t) {
+            public void onFailure(Call<FeedGet> call, Throwable t) {
 
             }
         });
