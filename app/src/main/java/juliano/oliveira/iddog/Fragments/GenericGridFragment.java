@@ -1,7 +1,6 @@
 package juliano.oliveira.iddog.Fragments;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,36 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.widget.Toast;
 
 import juliano.oliveira.iddog.ApiServiceUtils;
-import juliano.oliveira.iddog.GET;
-import juliano.oliveira.iddog.GridViewAdapter;
-import juliano.oliveira.iddog.GridViewScrollListener;
-import juliano.oliveira.iddog.IDDogService;
 import juliano.oliveira.iddog.ImageDetail;
 import juliano.oliveira.iddog.R;
-import juliano.oliveira.iddog.RetrofitClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentHusky extends Fragment {
+public class GenericGridFragment extends Fragment {
 
     private String _token;
+    private String _category;
 
-    public FragmentHusky() {
+    public GenericGridFragment() {
         // Required empty public constructor
     }
 
@@ -49,7 +34,7 @@ public class FragmentHusky extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View inflate = inflater.inflate(R.layout.fragment_grid_view_husky, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_grid_generic, container, false);
         return inflate;
     }
 
@@ -57,10 +42,11 @@ public class FragmentHusky extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        final GridView grid = (GridView) view.findViewById(R.id.grv_Husky);
+        final GridView grid = (GridView) view.findViewById(R.id.grv_generic_dog);
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             _token = bundle.getString("token");
+            _category = bundle.getString("category");
         }
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -73,9 +59,11 @@ public class FragmentHusky extends Fragment {
             }
         });
 
-        ApiServiceUtils.GetDog("husky",_token, getContext(), grid);
-
-
+        if(_category != null && _token != null) {
+            ApiServiceUtils.GetDog(_category, _token, getContext(), grid);
+        }else{
+            Toast.makeText(getContext(),"Problem acessing service",Toast.LENGTH_LONG);
+        }
 
     }
 
